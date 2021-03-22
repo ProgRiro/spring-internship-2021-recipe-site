@@ -13,5 +13,5 @@ export type RecipesResponse = {
 };
 
 export interface RecipeRepositoryInterface {
-  fetchRecipes: () => Promise<RecipesResponse>;
+  fetchRecipes: (page?: string, id?: string) => Promise<RecipesResponse>;
 }
