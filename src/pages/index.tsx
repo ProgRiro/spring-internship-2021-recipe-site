@@ -1,7 +1,26 @@
-import { FC } from "react";
+import React from "react";
+import { RecipeHandler } from "@/Presentation/handlers";
 
-const TopPage: FC = () => {
-  return <h1>Hello Next!</h1>;
+const Top: React.FC = () => {
+  const { recipes } = RecipeHandler();
+
+  return (
+    <>
+      <h1>Hello Next!</h1>
+      {recipes ? (
+        <div>
+          {recipes.map((recipe, index) => (
+            <div key={index}>
+              {recipe.id}
+              {recipe.author.name}
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div>Loading...</div>
+      )}
+    </>
+  );
 };
 
-export default TopPage;
+export default Top;
