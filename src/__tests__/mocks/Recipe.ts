@@ -1,6 +1,6 @@
 import { RecipeObj } from "@/Domain/Factory";
 
-export const recipes: RecipeObj[] = [
+export const recipesObj: RecipeObj[] = [
   {
     id: 1,
     title: "ゴーヤと桜海老の塩昆布和え",

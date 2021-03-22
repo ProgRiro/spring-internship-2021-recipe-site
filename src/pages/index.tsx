@@ -1,12 +1,14 @@
 import { NextPage } from "next";
 import { Recipe } from "@/Domain/Entity";
+import { Links } from "@/Domain/ValueObject";
 import { RecipeHandler } from "@/Presentation/handlers";
 
 interface Props {
   recipes: Recipe[];
+  links: Links;
 }
 
-const Top: NextPage<Props> = ({ recipes }) => {
+const Top: NextPage<Props> = ({ recipes, links }) => {
   return (
     <>
       <h1>Hello Next!</h1>
@@ -28,10 +30,11 @@ const Top: NextPage<Props> = ({ recipes }) => {
 
 export const getStaticProps = async () => {
   const { fetchRecipes } = RecipeHandler();
-  const recipes = await fetchRecipes();
+  const response = await fetchRecipes();
   return {
     props: {
-      recipes: JSON.parse(JSON.stringify(recipes)),
+      recipes: JSON.parse(JSON.stringify(response.recipes)),
+      links: response.links,
     },
   };
 };
