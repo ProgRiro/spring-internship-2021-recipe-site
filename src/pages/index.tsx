@@ -1,9 +1,12 @@
-import React from "react";
+import { NextPage } from "next";
+import { Recipe } from "@/Domain/Entity";
 import { RecipeHandler } from "@/Presentation/handlers";
 
-const Top: React.FC = () => {
-  const { recipes } = RecipeHandler();
+interface Props {
+  recipes: Recipe[];
+}
 
+const Top: NextPage<Props> = ({ recipes }) => {
   return (
     <>
       <h1>Hello Next!</h1>
@@ -21,6 +24,16 @@ const Top: React.FC = () => {
       )}
     </>
   );
+};
+
+export const getStaticProps = async () => {
+  const { fetchRecipes } = RecipeHandler();
+  const recipes = await fetchRecipes();
+  return {
+    props: {
+      recipes: JSON.parse(JSON.stringify(recipes)),
+    },
+  };
 };
 
 export default Top;
