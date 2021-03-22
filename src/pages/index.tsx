@@ -35,6 +35,8 @@ const Top: NextPage<Props> = ({ recipes, links }) => {
               <div key={index}>
                 {recipe.id}
                 {recipe.author.name}
+                {recipe.title}
+                {recipe.publishedAt}
               </div>
             ))}
           </div>

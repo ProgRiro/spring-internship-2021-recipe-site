@@ -7,6 +7,8 @@ type RecipesResponse = {
   links: Links;
 };
 
+type RecipeResponse = RecipeObj;
+
 export class RecipeRepository implements RecipeRepositoryInterface {
   private readonly restClient;
   constructor() {
@@ -27,6 +29,14 @@ export class RecipeRepository implements RecipeRepositoryInterface {
       recipes: recipes,
       links: response.links,
     };
+  }
+
+  public async fetchRecipe(id: string) {
+    const response = await this.restClient.get<RecipeResponse>(
+      `https://internship-recipe-api.ckpd.co/recipes/${id}`
+    );
+    const recipe = RecipeFactory.createFromRecipeObj(response);
+    return recipe;
   }
 }
 

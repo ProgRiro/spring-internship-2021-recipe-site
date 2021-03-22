@@ -6,5 +6,6 @@ export const RecipeHandler = () => {
   const fetchRecipes = async (page?: string, id?: string) =>
     await reciptClient.fetchRecipes(page, id);
 
-  return { fetchRecipes };
+  const fetchRecipe = async (id: string) => await reciptClient.fetchRecipe(id);
+  return { fetchRecipes, fetchRecipe };
 };
