@@ -17,6 +17,16 @@ export class MockRecipeRepository implements RecipeRepositoryInterface {
     const recipe = RecipeFactory.createFromRecipeObj(recipesObj[0]);
     return recipe;
   }
+
+  public async searchRecipes() {
+    const recipes = recipesObj.map((recipe: RecipeObj) =>
+      RecipeFactory.createFromRecipeObj(recipe)
+    );
+    return {
+      recipes: recipes,
+      links: {},
+    };
+  }
 }
 
 export const createMockRecipeRepository = () => {

@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import { NextPage, NextPageContext } from "next";
 import { useRouter } from "next/router";
 import { Recipe } from "@/Domain/Entity";
@@ -11,14 +12,27 @@ interface Props {
 
 const Top: NextPage<Props> = ({ recipes, links }) => {
   const router = useRouter();
+  const [input, setInput] = useState("");
+  const { pathname, query } = router;
 
   const handleClick = (link?: string) => {
     if (!link) return;
     const url = new URL(link);
     const page = new URLSearchParams(url.search);
     const nextPage = page.get("page") || "1";
-    const { pathname, query } = router;
     query.page = nextPage;
+    router.push({
+      pathname,
+      query,
+    });
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInput(e.target.value);
+  };
+
+  const handleSearch = () => {
+    query.keyword = input;
     router.push({
       pathname,
       query,
@@ -30,6 +44,8 @@ const Top: NextPage<Props> = ({ recipes, links }) => {
       <h1>Hello Next!</h1>
       {recipes ? (
         <>
+          <input onChange={handleChange} />
+          <button onClick={handleSearch}>Search</button>
           <div>
             {recipes.map((recipe, index) => (
               <div key={index}>
@@ -62,13 +78,16 @@ const Top: NextPage<Props> = ({ recipes, links }) => {
 
 interface contextProps extends NextPageContext {
   query: {
-    page: string;
+    page?: string;
+    keyword?: string;
   };
 }
 
 export const getServerSideProps = async (context: contextProps) => {
-  const { fetchRecipes } = RecipeHandler();
-  const response = await fetchRecipes(context.query.page);
+  const { fetchRecipes, searchRecipes } = RecipeHandler();
+  const response = context.query.keyword
+    ? await searchRecipes(context.query.keyword, context.query.page)
+    : await fetchRecipes(context.query.page);
   return {
     props: {
       recipes: JSON.parse(JSON.stringify(response.recipes)),

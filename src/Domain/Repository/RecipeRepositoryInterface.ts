@@ -12,7 +12,10 @@ export type RecipesResponse = {
   links: Links;
 };
 
+// TODO: page -> number
+
 export interface RecipeRepositoryInterface {
   fetchRecipes: (page?: string, id?: string) => Promise<RecipesResponse>;
   fetchRecipe: (id: string) => Promise<Recipe>;
+  searchRecipes: (keyword: string, page?: string) => Promise<RecipesResponse>;
 }
