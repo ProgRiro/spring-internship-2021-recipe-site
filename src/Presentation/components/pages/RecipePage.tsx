@@ -6,6 +6,7 @@ import { Colors, FontSizes } from "@/Library/StyleTypes";
 interface Props {
   title: string;
   author: string;
+  description: string;
   publishedAt: string;
   imageSrc: string | null;
 }
@@ -13,6 +14,7 @@ interface Props {
 export const RecipePage: React.FC<Props> = ({
   title,
   author,
+  description,
   publishedAt,
   imageSrc,
   children,
@@ -28,6 +30,7 @@ export const RecipePage: React.FC<Props> = ({
         <img className="img" src={imageSrc as string} />
         <small className="publishedAt">{published.toLocaleDateString()}</small>
         <small className="author">by {author}</small>
+        <p>{description}</p>
         <article className="article">{children}</article>
         <Footer />
       </DefaultLayout>
