@@ -15,6 +15,7 @@ interface Props {
 const RecipePage: NextPage<Props> = ({ recipe }) => {
   return (
     <RecipeLayoutPage
+      id={recipe.id}
       title={recipe.title}
       author={recipe.author.name}
       description={recipe.description}

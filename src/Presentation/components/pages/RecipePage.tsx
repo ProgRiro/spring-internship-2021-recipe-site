@@ -1,9 +1,12 @@
+import Head from "next/head";
 import { DefaultLayout } from "@/Presentation/components/templates";
 import { Title } from "@/Presentation/components/atoms";
 import { Header, Footer } from "@/Presentation/components/organisms";
 import { Colors, FontSizes } from "@/Library/StyleTypes";
+import { SITE_NAME_JP, TOP_OG_IMAGE_URL, ORIGIN } from "@/Library/Constants";
 
 interface Props {
+  id: number;
   title: string;
   author: string;
   description: string;
@@ -12,6 +15,7 @@ interface Props {
 }
 
 export const RecipePage: React.FC<Props> = ({
+  id,
   title,
   author,
   description,
@@ -23,6 +27,13 @@ export const RecipePage: React.FC<Props> = ({
   return (
     <>
       <DefaultLayout>
+        <Head>
+          <meta property="og:title" content={`${title} | ${SITE_NAME_JP}`} />
+          <meta property="og:description" content={description} />
+          <meta property="og:type" content="website" />
+          <meta property="og:url" content={`${ORIGIN}/recipes/${id}`} />
+          <meta property="og:image" content={imageSrc || TOP_OG_IMAGE_URL} />
+        </Head>
         <Header />
         <Title color="black" fontSize="xl">
           {title}
