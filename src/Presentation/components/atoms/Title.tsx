@@ -21,6 +21,7 @@ export const Title: React.FC<Props> = ({
           fontSize: FontSizes[fontSize],
           textAlign: isCenter ? "center" : "initial",
           display: "flex",
+          justifyContent: isCenter ? "center" : "initial",
           alignItems: "center",
         }}
       >

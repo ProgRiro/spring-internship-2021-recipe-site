@@ -11,8 +11,17 @@ export const LinkButton: React.FC<Props> = ({
   children,
 }) => {
   return (
-    <Link href={to} scroll={isScroll}>
-      <a rel="noopener">{children}</a>
-    </Link>
+    <>
+      <Link href={to} scroll={isScroll}>
+        <a rel="noopener">{children}</a>
+      </Link>
+      <style jsx>
+        {`
+          a {
+            text-decoration: none;
+          }
+        `}
+      </style>
+    </>
   );
 };

@@ -1,5 +1,6 @@
 import React from "react";
 import { Title } from "@/Presentation/components/atoms";
+import { LinkButton } from "@/Presentation/components/molecules";
 import { SITE_NAME_EN } from "@/Library/Constants";
 import { FontSizes } from "@/Library/StyleTypes";
 
@@ -10,9 +11,11 @@ interface Props {
 export const HeroLogo: React.FC<Props> = () => {
   return (
     <>
-      <Title fontSize="md" color="black">
-        <span className="icon">👋</span> {SITE_NAME_EN}
-      </Title>
+      <LinkButton to="/">
+        <Title fontSize="md" color="black">
+          <span className="icon">👋</span> {SITE_NAME_EN}
+        </Title>
+      </LinkButton>
       <style jsx>
         {`
           .icon {

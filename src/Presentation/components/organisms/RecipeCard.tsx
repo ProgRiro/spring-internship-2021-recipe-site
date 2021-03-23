@@ -4,6 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { useAmp } from "next/amp";
 import { Recipe } from "@/Domain/Entity";
+import { Title } from "@/Presentation/components/atoms";
 import { Colors, FontSizes } from "@/Library/StyleTypes";
 
 interface Props {
@@ -22,7 +23,9 @@ export const RecipeCard: React.FC<Props> = ({ recipe }) => {
       <Link href={`/recipes/${recipe.id}`}>
         <a rel="noopener">
           <div className="container">
-            <h3 className="title">{recipe.title}</h3>
+            <Title color="black" fontSize="md" isCenter>
+              {recipe.title}
+            </Title>
             <small className="author">by {recipe.author.name}</small>
             <small className="publishedAt">
               {publishedAt.toLocaleDateString()}
@@ -48,11 +51,6 @@ export const RecipeCard: React.FC<Props> = ({ recipe }) => {
             background-color: ${Colors.white};
             border-radius: 20px;
           }
-          .title {
-            font-size: ${FontSizes.md};
-            text-align: center;
-            margin: 5px;
-          }
           .author {
             display: block;
             font-size: ${FontSizes.sm};
@@ -74,12 +72,12 @@ export const RecipeCard: React.FC<Props> = ({ recipe }) => {
           }
           .description {
             font-size: ${FontSizes.sm};
-            padding: 10px 5px;
-            border-bottom: solid 1px ${Colors.gray};
+            padding: 5px 8px;
+            border-bottom: solid 2px ${Colors.gray};
           }
           .ingredient {
             font-size: ${FontSizes.sm};
-            padding: 10px 5px;
+            padding: 5px;
           }
           .checkRecipeButton {
             width: 65%;
