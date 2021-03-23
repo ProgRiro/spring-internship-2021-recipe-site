@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
-import { Colors } from "@/Library/StyleTypes";
+import { Colors, FontSizes } from "@/Library/StyleTypes";
 import { LinkButton, IconButton } from "@/Presentation/components/molecules";
 
 export const SearchForm: React.FC = () => {
@@ -56,10 +56,11 @@ export const SearchForm: React.FC = () => {
           }
           .input {
             width: 100%;
-            padding: 8px 15px;
+            padding: 7px 15px;
             box-shadow: 0 0 4px ${Colors.black} inset;
             border-radius: 20px 0 0 20px;
             border: none;
+            font-size: ${FontSizes.md};
           }
         `}
       </style>
