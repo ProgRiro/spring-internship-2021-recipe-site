@@ -21,4 +21,20 @@ export class Recipe {
     // なお、関連レシピの算出アルゴリズムのできが悪いため関連性が低い可能性がある点に注意。
     readonly relatedRecipes: number[]
   ) {}
+
+  get ingredientNames() {
+    return this.ingredients.map((ingredient) => ingredient.name);
+  }
+
+  get formattedIngredientNames() {
+    return this.ingredientNames.join(", ");
+  }
+
+  get ingredientQuantities() {
+    return this.ingredients.map((ingredient) => ingredient.quantity);
+  }
+
+  get formattedIngredientQuantities() {
+    return this.ingredientQuantities.join(", ");
+  }
 }
