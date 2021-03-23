@@ -1,9 +1,17 @@
-import React, { useState } from "react";
+export const config = { amp: "hybrid" };
+
+import React from "react";
+import { useAmp } from "next/amp";
 import { NextPage, NextPageContext } from "next";
-import { useRouter } from "next/router";
 import { Recipe } from "@/Domain/Entity";
 import { Links } from "@/Domain/ValueObject";
 import { RecipeHandler } from "@/Presentation/handlers";
+import { TopPage } from "@/Presentation/components/pages";
+import {
+  SearchForm,
+  RecipeCard,
+  Pagenation,
+} from "@/Presentation/components/organisms";
 
 interface Props {
   recipes: Recipe[];
@@ -11,68 +19,24 @@ interface Props {
 }
 
 const Top: NextPage<Props> = ({ recipes, links }) => {
-  const router = useRouter();
-  const [input, setInput] = useState("");
-  const { pathname, query } = router;
+  const isAmp = useAmp();
 
-  const handleClick = (link?: string) => {
-    if (!link) return;
-    const url = new URL(link);
-    const page = new URLSearchParams(url.search);
-    const nextPage = page.get("page") || "1";
-    query.page = nextPage;
-    router.push({
-      pathname,
-      query,
-    });
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInput(e.target.value);
-  };
-
-  const handleSearch = () => {
-    query.keyword = input;
-    router.push({
-      pathname,
-      query,
-    });
-  };
+  if (!recipes) return <div>Loading...</div>;
 
   return (
-    <>
-      <h1>Hello Next!</h1>
-      {recipes ? (
+    <TopPage>
+      {!isAmp && <SearchForm />}
+      {recipes.length > 0 ? (
         <>
-          <input onChange={handleChange} />
-          <button onClick={handleSearch}>Search</button>
-          <div>
-            {recipes.map((recipe, index) => (
-              <div key={index}>
-                {recipe.id}
-                {recipe.author.name}
-                {recipe.title}
-                {recipe.publishedAt}
-              </div>
-            ))}
-          </div>
-          <button
-            onClick={() => handleClick(links.prev)}
-            disabled={!links.prev}
-          >
-            Prev
-          </button>
-          <button
-            onClick={() => handleClick(links.next)}
-            disabled={!links.next}
-          >
-            Next
-          </button>
+          {recipes.map((recipe, index) => (
+            <RecipeCard key={index} recipe={recipe} />
+          ))}
+          {!isAmp && <Pagenation prevLink={links.prev} nextLink={links.next} />}
         </>
       ) : (
-        <div>Loading...</div>
+        <div>Not Fount Recipe</div>
       )}
-    </>
+    </TopPage>
   );
 };
 
