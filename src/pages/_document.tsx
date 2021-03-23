@@ -1,7 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
 import {
-  SITE_NAME_EN,
-  SITE_NAME_JP,
   DESCRIPTION,
   CONTENT_KEYWORD,
   TOP_OG_IMAGE_URL,
@@ -16,9 +14,6 @@ class MyDocument extends Document {
           <meta name="description" content={DESCRIPTION} />
           <meta property="og:image" content={TOP_OG_IMAGE_URL} />
           <meta content={CONTENT_KEYWORD} name="keywords" />
-          <title>
-            {SITE_NAME_EN} | レシピ検索No.1／料理レシピ載せるなら {SITE_NAME_JP}
-          </title>
           <link
             rel="preconnect"
             href="https://fonts.gstatic.com"
