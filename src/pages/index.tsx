@@ -44,6 +44,7 @@ interface contextProps extends NextPageContext {
   query: {
     page?: string;
     keyword?: string;
+    id?: string;
   };
 }
 
@@ -51,7 +52,7 @@ export const getServerSideProps = async (context: contextProps) => {
   const { fetchRecipes, searchRecipes } = RecipeHandler();
   const response = context.query.keyword
     ? await searchRecipes(context.query.keyword, context.query.page)
-    : await fetchRecipes(context.query.page);
+    : await fetchRecipes(context.query.page, context.query.id);
   return {
     props: {
       recipes: JSON.parse(JSON.stringify(response.recipes)),

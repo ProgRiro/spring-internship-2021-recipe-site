@@ -1,7 +1,11 @@
 import { GetServerSideProps, NextPage } from "next";
 import { Recipe } from "@/Domain/Entity";
 import { RecipeHandler } from "@/Presentation/handlers";
-import { Ingredients, Steps } from "@/Presentation/components/organisms";
+import {
+  Ingredients,
+  Steps,
+  RelatedRecipesButton,
+} from "@/Presentation/components/organisms";
 import { RecipePage as RecipeLayoutPage } from "@/Presentation/components/pages";
 
 interface Props {
@@ -19,6 +23,7 @@ const RecipePage: NextPage<Props> = ({ recipe }) => {
     >
       <Ingredients ingredients={recipe.ingredients} />
       <Steps steps={recipe.steps} />
+      <RelatedRecipesButton relatedRecipes={recipe.relatedRecipes} />
     </RecipeLayoutPage>
   );
 };

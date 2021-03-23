@@ -1,7 +1,6 @@
 import { createRestClient } from "./utils";
 import { RecipeRepositoryInterface, Links } from "@/Domain/Repository";
 import { RecipeFactory, RecipeObj } from "@/Domain/Factory";
-import { threadId } from "node:worker_threads";
 
 type RecipesResponse = {
   recipes: RecipeObj[];
@@ -18,8 +17,8 @@ export class RecipeRepository implements RecipeRepositoryInterface {
 
   public async fetchRecipes(page?: string, id?: string) {
     const params = new URLSearchParams();
-    if (page) params.append("page", page);
-    else if (id) params.append("id", id);
+    if (id) params.append("id", id);
+    else if (page) params.append("page", page);
     const response = await this.restClient.get<RecipesResponse>(
       `https://internship-recipe-api.ckpd.co/recipes?${params.toString()}`
     );
@@ -28,7 +27,7 @@ export class RecipeRepository implements RecipeRepositoryInterface {
     );
     return {
       recipes: recipes,
-      links: response.links,
+      links: response.links || [],
     };
   }
 
@@ -54,7 +53,7 @@ export class RecipeRepository implements RecipeRepositoryInterface {
       : [];
     return {
       recipes: recipes,
-      links: response.links || false,
+      links: response.links || [],
     };
   }
 }
