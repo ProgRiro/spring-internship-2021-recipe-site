@@ -39,11 +39,15 @@ export const RecipePage: React.FC<Props> = ({
         <Title color="black" fontSize="xl">
           {title}
         </Title>
-        <img className="img" src={imageSrc as string} />
-        <small className="publishedAt">{published.toLocaleDateString()}</small>
-        <small className="author">by {author}</small>
-        <p>{description}</p>
-        <article className="article">{children}</article>
+        <main>
+          <img className="img" src={imageSrc as string} />
+          <small className="publishedAt">
+            {published.toLocaleDateString()}
+          </small>
+          <small className="author">by {author}</small>
+          <p>{description}</p>
+          <article className="article">{children}</article>
+        </main>
         <Footer />
       </DefaultLayout>
       <style jsx>{`
