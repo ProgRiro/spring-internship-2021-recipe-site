@@ -33,6 +33,7 @@ export const RecipePage: React.FC<Props> = ({
           <meta property="og:type" content="website" />
           <meta property="og:url" content={`${ORIGIN}/recipes/${id}`} />
           <meta property="og:image" content={imageSrc || TOP_OG_IMAGE_URL} />
+          <meta name="twitter:card" content="summary_large_image" />
         </Head>
         <Header />
         <Title color="black" fontSize="xl">
