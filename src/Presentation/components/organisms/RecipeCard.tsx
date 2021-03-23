@@ -33,7 +33,7 @@ export const RecipeCard: React.FC<Props> = ({ recipe }) => {
             <img className="img" src={recipe.imageUrl as string} />
             <p className="description">{recipe.description}</p>
             <p className="ingredient">{formattedIngredientNames}</p>
-            <div className="checkRecipeButton">👀 check this recipe</div>
+            <div className="checkRecipeButton">✌️ レシピ詳細 ✌️</div>
           </div>
         </a>
       </Link>

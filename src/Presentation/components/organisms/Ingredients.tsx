@@ -22,8 +22,8 @@ export const Ingredients: React.FC<Props> = ({ ingredients }) => {
               backgroundColor: index % 2 === 0 ? Colors.white : Colors.beige,
             }}
           >
-            <span>{ingredient.name}</span>
-            <span>{ingredient.quantity}</span>
+            <span className="name">{ingredient.name}</span>
+            <span className="quantity">{ingredient.quantity}</span>
           </div>
         ))}
       </div>
@@ -37,6 +37,13 @@ export const Ingredients: React.FC<Props> = ({ ingredients }) => {
           align-items: center;
           padding: 8px 10px;
           border-radius: 10px;
+        }
+        .name {
+          width: 70%;
+        }
+        .quantity {
+          width: 30%;
+          text-align: right;
         }
       `}</style>
     </>
