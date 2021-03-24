@@ -8,6 +8,7 @@ interface Props {
   imageSrc: string | null;
   published: string;
   author: string;
+  isPosterView?: boolean;
 }
 
 export const RecipeMain: React.FC<Props> = ({
@@ -17,6 +18,7 @@ export const RecipeMain: React.FC<Props> = ({
   imageSrc,
   published,
   author,
+  isPosterView = false,
   children,
 }) => {
   return (
@@ -26,7 +28,12 @@ export const RecipeMain: React.FC<Props> = ({
           {title}
         </Title>
         <Img className="RecipeImage" imageSrc={imageSrc} />
-        <RecipeMeta id={id} published={published} author={author} />
+        <RecipeMeta
+          id={id}
+          published={published}
+          author={author}
+          isPosterView={isPosterView}
+        />
         <p>{description}</p>
         <article className="article">{children}</article>
       </main>

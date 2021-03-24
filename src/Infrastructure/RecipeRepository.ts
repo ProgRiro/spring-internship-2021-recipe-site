@@ -27,7 +27,7 @@ export class RecipeRepository implements RecipeRepositoryInterface {
     );
     return {
       recipes: recipes,
-      links: response.links || [],
+      links: response.links || {},
     };
   }
 
@@ -37,6 +37,30 @@ export class RecipeRepository implements RecipeRepositoryInterface {
     );
     const recipe = RecipeFactory.createFromRecipeObj(response);
     return recipe;
+  }
+
+  public async fetchRecipeWithRelated(id: string) {
+    const response = await this.restClient.get<RecipeResponse>(
+      `https://internship-recipe-api.ckpd.co/recipes/${id}`
+    );
+    const recipe = RecipeFactory.createFromRecipeObj(response);
+
+    const params = new URLSearchParams();
+    const relatedIds = recipe.formattedRelatedRecipeIds;
+    params.append("id", relatedIds);
+    const relatedResponse = await this.restClient.get<RecipesResponse>(
+      `https://internship-recipe-api.ckpd.co/recipes?${params.toString()}`
+    );
+    const relatedRecipe = relatedResponse.recipes
+      ? relatedResponse.recipes.map((recipe) =>
+          RecipeFactory.createFromRecipeObj(recipe)
+        )
+      : [];
+
+    return {
+      recipes: [recipe, ...relatedRecipe],
+      links: relatedResponse.links || {},
+    };
   }
 
   public async searchRecipes(keyword: string, page?: string) {

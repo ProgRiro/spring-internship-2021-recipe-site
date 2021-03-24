@@ -8,8 +8,11 @@ export const RecipeHandler = () => {
 
   const fetchRecipe = async (id: string) => await reciptClient.fetchRecipe(id);
 
+  const fetchRecipeWithRelated = async (id: string) =>
+    await reciptClient.fetchRecipeWithRelated(id);
+
   const searchRecipes = async (keyword: string, page?: string) =>
     await reciptClient.searchRecipes(keyword, page);
 
-  return { fetchRecipes, fetchRecipe, searchRecipes };
+  return { fetchRecipes, fetchRecipe, fetchRecipeWithRelated, searchRecipes };
 };

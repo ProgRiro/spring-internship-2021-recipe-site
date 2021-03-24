@@ -1,7 +1,4 @@
-export const config = { amp: "hybrid" };
-
 import Link from "next/link";
-import { useAmp } from "next/amp";
 import { Recipe } from "@/Domain/Entity";
 import { Title, Img } from "@/Presentation/components/atoms";
 import { Colors, FontSizes } from "@/Library/StyleTypes";
@@ -11,7 +8,6 @@ interface Props {
 }
 
 export const RecipeCard: React.FC<Props> = ({ recipe }) => {
-  const isAmp = useAmp();
   const formattedIngredientNames = recipe.ingredients
     .map((ingredient) => ingredient.name)
     .join(", ");

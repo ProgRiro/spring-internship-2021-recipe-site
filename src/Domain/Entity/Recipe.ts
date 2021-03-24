@@ -1,4 +1,5 @@
 import { Author, Ingredient } from "@/Domain/ValueObject";
+import { threadId } from "node:worker_threads";
 
 export class Recipe {
   constructor(
@@ -36,5 +37,9 @@ export class Recipe {
 
   get formattedIngredientQuantities() {
     return this.ingredientQuantities.join(", ");
+  }
+
+  get formattedRelatedRecipeIds() {
+    return this.relatedRecipes.join(",");
   }
 }

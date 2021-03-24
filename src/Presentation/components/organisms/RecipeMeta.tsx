@@ -1,3 +1,4 @@
+import { IconButton, LinkButton } from "@/Presentation/components/molecules";
 import { FontSizes } from "@/Library/StyleTypes";
 import dynamic from "next/dynamic";
 const StarButton = dynamic(
@@ -9,13 +10,41 @@ interface Props {
   id: number;
   published: string;
   author: string;
+  isPosterView: boolean;
 }
 
-export const RecipeMeta: React.FC<Props> = ({ id, published, author }) => {
+export const RecipeMeta: React.FC<Props> = ({
+  id,
+  published,
+  author,
+  isPosterView,
+}) => {
   return (
     <>
       <div className="container">
         <StarButton id={id} />
+        {isPosterView ? (
+          <LinkButton to={`/recipes/${id}`}>
+            <IconButton
+              className="starButton"
+              icon="file"
+              color="green"
+              bgColor="white"
+              size="lg"
+            />
+          </LinkButton>
+        ) : (
+          <LinkButton to={`/recipes/${id}?view=poster`}>
+            <IconButton
+              className="starButton"
+              icon="copy"
+              color="green"
+              bgColor="white"
+              size="lg"
+            />
+          </LinkButton>
+        )}
+
         <div>
           <small className="meta">{published}</small>
           <small className="meta">by {author}</small>

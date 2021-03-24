@@ -1,6 +1,11 @@
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import { SITE_NAME_EN, SITE_NAME_JP } from "@/Library/Constants";
+import "swiper/swiper.scss";
+import "swiper/components/navigation/navigation.scss";
+import "swiper/components/pagination/pagination.scss";
+import "swiper/components/scrollbar/scrollbar.scss";
+import "swiper/components/effect-cube/effect-cube.scss";
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
