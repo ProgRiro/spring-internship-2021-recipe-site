@@ -40,7 +40,7 @@ export const RecipePage: React.FC<Props> = ({
           {title}
         </Title>
         <main>
-          <img className="img" src={imageSrc as string} />
+          <img className="img" src={imageSrc as string} loading="lazy" />
           <small className="publishedAt">
             {published.toLocaleDateString()}
           </small>

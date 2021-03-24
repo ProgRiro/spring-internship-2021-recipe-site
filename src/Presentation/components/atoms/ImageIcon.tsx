@@ -14,7 +14,13 @@ export const ImageIcon: React.FC<Props> = ({ imgSrc }) => {
       {isAmp ? (
         <amp-img className="img" src={imgSrc} height={35} width={35} />
       ) : (
-        <img className="img" src={imgSrc} height={35} width={35} />
+        <img
+          className="img"
+          src={imgSrc}
+          height={35}
+          width={35}
+          loading="lazy"
+        />
       )}
 
       <style jsx>

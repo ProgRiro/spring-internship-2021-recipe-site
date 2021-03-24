@@ -30,7 +30,11 @@ export const RecipeCard: React.FC<Props> = ({ recipe }) => {
             <small className="publishedAt">
               {publishedAt.toLocaleDateString()}
             </small>
-            <img className="img" src={recipe.imageUrl as string} />
+            <img
+              className="img"
+              src={recipe.imageUrl as string}
+              loading="lazy"
+            />
             <p className="description">{recipe.description}</p>
             <p className="ingredient">{formattedIngredientNames}</p>
             <div className="checkRecipeButton">✌️ レシピ詳細 ✌️</div>
