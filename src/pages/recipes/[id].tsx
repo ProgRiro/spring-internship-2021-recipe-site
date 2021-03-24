@@ -1,4 +1,9 @@
 import { GetServerSideProps, NextPage } from "next";
+import dynamic from "next/dynamic";
+const RecipeLayoutPage = dynamic(
+  () => import("@/Presentation/components/pages/RecipePage")
+);
+
 import { Recipe } from "@/Domain/Entity";
 import { RecipeHandler } from "@/Presentation/handlers";
 import {
@@ -6,7 +11,6 @@ import {
   Steps,
   RelatedRecipesButton,
 } from "@/Presentation/components/organisms";
-import { RecipePage as RecipeLayoutPage } from "@/Presentation/components/pages";
 
 interface Props {
   recipe: Recipe;

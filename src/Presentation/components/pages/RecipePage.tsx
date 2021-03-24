@@ -14,7 +14,7 @@ interface Props {
   imageSrc: string | null;
 }
 
-export const RecipePage: React.FC<Props> = ({
+const RecipePage: React.FC<Props> = ({
   id,
   title,
   author,
@@ -69,3 +69,5 @@ export const RecipePage: React.FC<Props> = ({
     </>
   );
 };
+
+export default RecipePage;

@@ -1,12 +1,16 @@
 export const config = { amp: "hybrid" };
 
+import dynamic from "next/dynamic";
+const TopPage = dynamic(
+  () => import("@/Presentation/components/pages/TopPage")
+);
+
 import React from "react";
 import { useAmp } from "next/amp";
 import { NextPage, NextPageContext } from "next";
 import { Recipe } from "@/Domain/Entity";
 import { Links } from "@/Domain/ValueObject";
 import { RecipeHandler } from "@/Presentation/handlers";
-import { TopPage } from "@/Presentation/components/pages";
 import {
   SearchForm,
   RecipeCard,
