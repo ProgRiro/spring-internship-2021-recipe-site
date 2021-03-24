@@ -1,4 +1,3 @@
-import React from "react";
 import { LinkButton } from "@/Presentation/components/molecules";
 import { Colors, FontSizes } from "@/Library/StyleTypes";
 

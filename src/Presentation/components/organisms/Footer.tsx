@@ -12,7 +12,7 @@ export const Footer: React.FC = () => {
       <style jsx>
         {`
           footer {
-            margin: 3em 0;
+            margin: 50px 0 120px 0;
             position: relative;
             bottom: 0;
             padding: 1.5em 1.5em 0.5em 1.5em;

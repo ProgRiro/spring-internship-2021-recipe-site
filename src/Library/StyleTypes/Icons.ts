@@ -6,6 +6,7 @@ import {
   faFolder,
   faAngleLeft,
   faAngleRight,
+  faStar,
 } from "@fortawesome/free-solid-svg-icons";
 
 export const Icons = {
@@ -16,5 +17,6 @@ export const Icons = {
   folder: faFolder,
   angleLeft: faAngleLeft,
   angleRight: faAngleRight,
+  star: faStar,
 };
 export type Icons = keyof typeof Icons;

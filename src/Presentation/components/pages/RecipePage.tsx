@@ -1,8 +1,10 @@
 import Head from "next/head";
 import { DefaultLayout } from "@/Presentation/components/templates";
-import { Title, Img } from "@/Presentation/components/atoms";
-import { Header, Footer } from "@/Presentation/components/organisms";
-import { FontSizes } from "@/Library/StyleTypes";
+import {
+  Header,
+  Footer,
+  RecipeMain,
+} from "@/Presentation/components/organisms";
 import { SITE_NAME_JP, TOP_OG_IMAGE_URL, ORIGIN } from "@/Library/Constants";
 
 interface Props {
@@ -14,7 +16,7 @@ interface Props {
   imageSrc: string | null;
 }
 
-const RecipePage: React.FC<Props> = ({
+export const RecipePage: React.FC<Props> = ({
   id,
   title,
   author,
@@ -36,38 +38,18 @@ const RecipePage: React.FC<Props> = ({
           <meta name="twitter:card" content="summary_large_image" />
         </Head>
         <Header />
-        <Title color="black" fontSize="xl" isCenter>
-          {title}
-        </Title>
-        <main>
-          <Img className="RecipeImage" imageSrc={imageSrc} />
-          <small className="publishedAt">
-            {published.toLocaleDateString()}
-          </small>
-          <small className="author">by {author}</small>
-          <p>{description}</p>
-          <article className="article">{children}</article>
-        </main>
+        <RecipeMain
+          id={id}
+          title={title}
+          description={description}
+          imageSrc={imageSrc}
+          published={published.toLocaleDateString()}
+          author={author}
+        >
+          {children}
+        </RecipeMain>
         <Footer />
       </DefaultLayout>
-      <style jsx>{`
-        .publishedAt {
-          display: block;
-          font-size: ${FontSizes.md};
-          text-align: right;
-          margin-top: 10px;
-        }
-        .author {
-          display: block;
-          font-size: ${FontSizes.md};
-          text-align: right;
-        }
-        .article {
-          margin: 20px 0;
-        }
-      `}</style>
     </>
   );
 };
-
-export default RecipePage;

@@ -1,4 +1,3 @@
-import React from "react";
 import { Colors, FontSizes } from "@/Library/StyleTypes";
 
 interface Props {

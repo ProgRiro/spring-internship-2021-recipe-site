@@ -1,6 +1,5 @@
 export const config = { amp: "hybrid" };
 
-import React from "react";
 import { useAmp } from "next/amp";
 import { Img } from "@/Presentation/components/atoms";
 

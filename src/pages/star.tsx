@@ -1,4 +1,4 @@
-export const config = { amp: "hybrid" };
+export const config = { amp: "true" };
 
 import { useAmp } from "next/amp";
 import { NextPage, NextPageContext } from "next";
@@ -6,59 +6,49 @@ import { Recipe } from "@/Domain/Entity";
 import { Links } from "@/Domain/ValueObject";
 import { RecipeHandler } from "@/Presentation/handlers";
 import {
-  SearchForm,
   RecipeCard,
   Pagenation,
   NotFound,
 } from "@/Presentation/components/organisms";
-import { TopPage } from "@/Presentation/components/pages";
-import dynamic from "next/dynamic";
-const StarFolderButton = dynamic(
-  () => import("@/Presentation/components/organisms/StarFolderButton"),
-  { ssr: false }
-);
+import { StarFolderPage } from "@/Presentation/components/pages";
 
 interface Props {
   recipes: Recipe[];
   links: Links;
 }
 
-const Top: NextPage<Props> = ({ recipes, links }) => {
+const Star: NextPage<Props> = ({ recipes, links }) => {
   const isAmp = useAmp();
 
   if (!recipes) return <div>Loading...</div>;
 
   return (
-    <TopPage>
-      {!isAmp && <SearchForm />}
-      <StarFolderButton />
+    <StarFolderPage>
       {recipes.length > 0 ? (
         <>
           {recipes.map((recipe, index) => (
             <RecipeCard key={index} recipe={recipe} />
           ))}
-          {!isAmp && <Pagenation prevLink={links.prev} nextLink={links.next} />}
+          <Pagenation prevLink={links.prev} nextLink={links.next} />
         </>
       ) : (
         <NotFound />
       )}
-    </TopPage>
+    </StarFolderPage>
   );
 };
 
 interface contextProps extends NextPageContext {
   query: {
     page?: string;
-    keyword?: string;
     id?: string;
   };
 }
 
 export const getServerSideProps = async (context: contextProps) => {
-  const { fetchRecipes, searchRecipes } = RecipeHandler();
-  const response = context.query.keyword
-    ? await searchRecipes(context.query.keyword, context.query.page)
-    : await fetchRecipes(context.query.page, context.query.id);
+  const { fetchRecipes } = RecipeHandler();
+  if (!context.query.id) return { props: { recipes: {}, links: {} } };
+  const response = await fetchRecipes(context.query.page, context.query.id);
   return {
     props: {
       recipes: JSON.parse(JSON.stringify(response.recipes)),
@@ -67,4 +57,4 @@ export const getServerSideProps = async (context: contextProps) => {
   };
 };
 
-export default Top;
+export default Star;

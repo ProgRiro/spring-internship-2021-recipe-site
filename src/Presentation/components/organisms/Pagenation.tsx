@@ -1,4 +1,3 @@
-import React from "react";
 import { IconButton, LinkButton } from "@/Presentation/components/molecules";
 
 interface Props {
@@ -22,6 +21,7 @@ export const Pagenation: React.FC<Props> = ({ prevLink, nextLink }) => {
             icon="angleLeft"
             color="black"
             bgColor="gray"
+            size="lg"
             isDisabled={!prevLink}
           />
         </LinkButton>
@@ -31,6 +31,7 @@ export const Pagenation: React.FC<Props> = ({ prevLink, nextLink }) => {
             icon="angleRight"
             color="black"
             bgColor="gray"
+            size="lg"
             isDisabled={!nextLink}
           />
         </LinkButton>

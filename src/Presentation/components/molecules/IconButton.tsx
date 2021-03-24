@@ -1,15 +1,17 @@
 import Link from "next/link";
 import { Icon } from "@/Presentation/components/atoms";
-import { Colors, Icons } from "@/Library/StyleTypes";
+import { Colors, FontSizes, Icons } from "@/Library/StyleTypes";
 
-type className = "pagenationButton" | "searchButton";
+type className = "pagenationButton" | "searchButton" | "starButton";
 
 interface Props {
   className: className;
   icon: Icons;
   color: Colors;
   bgColor: Colors;
+  size: FontSizes;
   isDisabled?: boolean;
+  onClick?: () => void;
 }
 
 export const IconButton: React.FCX<Props> = ({
@@ -17,15 +19,17 @@ export const IconButton: React.FCX<Props> = ({
   icon,
   color,
   bgColor,
+  size,
   isDisabled = false,
+  onClick,
 }) => {
   return (
     <>
       {isDisabled ? (
         <div className="disabled" />
       ) : (
-        <button className={className}>
-          <Icon icon={icon} />
+        <button className={className} onClick={onClick}>
+          <Icon icon={icon} size={size} />
         </button>
       )}
       <style jsx>
@@ -53,6 +57,16 @@ export const IconButton: React.FCX<Props> = ({
             color: ${Colors[color]};
             background-color: ${Colors[bgColor]};
             border: none;
+            cursor: pointer;
+          }
+          .starButton {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            color: ${Colors[color]};
+            background-color: ${Colors[bgColor]};
+            border: none;
+            box-shadow: 0 3px 6px -2px rgb(0 10 60 / 20%);
             cursor: pointer;
           }
         `}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/router";
 import { Colors, FontSizes } from "@/Library/StyleTypes";
 import { LinkButton, IconButton } from "@/Presentation/components/molecules";
@@ -42,6 +42,7 @@ export const SearchForm: React.FC = () => {
             icon="search"
             color="white"
             bgColor="green"
+            size="md"
             className="searchButton"
           />
         </LinkButton>

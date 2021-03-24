@@ -1,4 +1,3 @@
-import React from "react";
 import { Title } from "@/Presentation/components/atoms";
 import { LinkButton } from "@/Presentation/components/molecules";
 import { SITE_NAME_EN } from "@/Library/Constants";

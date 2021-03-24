@@ -1,13 +1,12 @@
-import React from "react";
 import { Icon } from "@/Presentation/components/atoms";
 
 export const NavMenu: React.FC = () => {
   return (
     <>
       <div className="container">
-        <Icon icon="mobile">アプリ</Icon>
-        <Icon icon="signin">ログイン</Icon>
-        <Icon icon="bars">メニュー</Icon>
+        <Icon icon="mobile" size="md" />
+        <Icon icon="signin" size="md" />
+        <Icon icon="bars" size="md" />
       </div>
       <style jsx>
         {`

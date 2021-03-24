@@ -1,4 +1,3 @@
-import React from "react";
 import { Icon } from "@/Presentation/components/atoms";
 import { Icons } from "@/Library/StyleTypes";
 
@@ -10,7 +9,7 @@ export const IconWithText: React.FC<Props> = ({ icon, children }) => {
   return (
     <>
       <div className="container">
-        <Icon icon={icon} />
+        <Icon icon={icon} size="md" />
         <p className="text">{children}</p>
       </div>
       <style jsx>

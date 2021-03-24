@@ -1,4 +1,3 @@
-import React from "react";
 import { HeroLogo } from "@/Presentation/components/molecules";
 import { NavMenu } from "@/Presentation/components/organisms";
 import { Colors } from "@/Library/StyleTypes";

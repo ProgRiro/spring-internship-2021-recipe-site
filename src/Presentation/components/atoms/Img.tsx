@@ -1,4 +1,3 @@
-import React from "react";
 import Image from "next/image";
 import { TOP_OG_IMAGE_URL } from "@/Library/Constants";
 import { Colors } from "@/Library/StyleTypes";

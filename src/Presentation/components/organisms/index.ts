@@ -7,3 +7,6 @@ export * from "./Pagenation";
 export * from "./Ingredients";
 export * from "./Steps";
 export * from "./RelatedRecipesButton";
+export * from "./RecipeMeta";
+export * from "./RecipeMain";
+export * from "./NotFound";

@@ -1,6 +1,5 @@
 export const config = { amp: "hybrid" };
 
-import React from "react";
 import Link from "next/link";
 import { useAmp } from "next/amp";
 import { Recipe } from "@/Domain/Entity";
@@ -73,7 +72,7 @@ export const RecipeCard: React.FC<Props> = ({ recipe }) => {
           .description {
             font-size: ${FontSizes.sm};
             padding: 5px 8px;
-            border-bottom: solid 2px ${Colors.gray};
+            border-bottom: solid 1px ${Colors.gray};
           }
           .ingredient {
             font-size: ${FontSizes.sm};

@@ -1,15 +1,19 @@
-import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Icons } from "@/Library/StyleTypes";
+import { Icons, FontSizes } from "@/Library/StyleTypes";
 
 interface Props {
   icon: Icons;
+  size: FontSizes;
 }
 
-export const Icon: React.FC<Props> = ({ icon, ...rest }) => {
+export const Icon: React.FC<Props> = ({ icon, size, ...rest }) => {
   return (
     <>
-      <FontAwesomeIcon icon={Icons[icon]} style={{ width: "16px" }} {...rest} />
+      <FontAwesomeIcon
+        icon={Icons[icon]}
+        style={{ fontSize: FontSizes[size] }}
+        {...rest}
+      />
     </>
   );
 };

@@ -1,9 +1,5 @@
 import { GetServerSideProps, NextPage } from "next";
-import dynamic from "next/dynamic";
-const RecipeLayoutPage = dynamic(
-  () => import("@/Presentation/components/pages/RecipePage")
-);
-
+import { RecipePage as RecipeLayoutPage } from "@/Presentation/components/pages";
 import { Recipe } from "@/Domain/Entity";
 import { RecipeHandler } from "@/Presentation/handlers";
 import {

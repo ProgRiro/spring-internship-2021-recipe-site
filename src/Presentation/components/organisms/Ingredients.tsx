@@ -1,4 +1,3 @@
-import React from "react";
 import { Ingredient } from "@/Domain/ValueObject";
 import { Title } from "@/Presentation/components/atoms";
 import { Colors } from "@/Library/StyleTypes";
