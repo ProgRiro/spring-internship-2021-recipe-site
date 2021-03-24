@@ -8,16 +8,23 @@ import { RecipeHandler } from "@/Presentation/handlers";
 import {
   SearchForm,
   RecipeCard,
-  Pagenation,
   NotFound,
 } from "@/Presentation/components/organisms";
 import { TopPage } from "@/Presentation/components/pages";
+
 import dynamic from "next/dynamic";
 const StarFolderButton = dynamic(
   () => import("@/Presentation/components/organisms/StarFolderButton"),
   { ssr: false }
 );
-
+const PrevObserver = dynamic(
+  () => import("@/Presentation/components/organisms/PrevObserver"),
+  { ssr: false }
+);
+const NextObserver = dynamic(
+  () => import("@/Presentation/components/organisms/NextObserver"),
+  { ssr: false }
+);
 interface Props {
   recipes: Recipe[];
   links: Links;
@@ -30,6 +37,7 @@ const Top: NextPage<Props> = ({ recipes, links }) => {
 
   return (
     <TopPage>
+      {links.prev && <PrevObserver link={links.prev} />}
       {!isAmp && <SearchForm />}
       <StarFolderButton />
       {recipes.length > 0 ? (
@@ -37,11 +45,12 @@ const Top: NextPage<Props> = ({ recipes, links }) => {
           {recipes.map((recipe, index) => (
             <RecipeCard key={index} recipe={recipe} />
           ))}
-          {!isAmp && <Pagenation prevLink={links.prev} nextLink={links.next} />}
+          {/* {!isAmp && <Pagenation prevLink={links.prev} nextLink={links.next} />} */}
         </>
       ) : (
         <NotFound />
       )}
+      {links.next && <NextObserver link={links.next} />}
     </TopPage>
   );
 };

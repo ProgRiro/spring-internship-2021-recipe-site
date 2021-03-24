@@ -1,15 +1,21 @@
 import { Icon } from "@/Presentation/components/atoms";
-import { Icons } from "@/Library/StyleTypes";
-
+import { Icons, FontSizes } from "@/Library/StyleTypes";
 interface Props {
   icon: Icons;
+  iconSize: FontSizes;
+  fontSize: FontSizes;
 }
 
-export const IconWithText: React.FC<Props> = ({ icon, children }) => {
+export const IconWithText: React.FC<Props> = ({
+  icon,
+  iconSize,
+  fontSize,
+  children,
+}) => {
   return (
     <>
       <div className="container">
-        <Icon icon={icon} size="md" />
+        <Icon icon={icon} size={iconSize} />
         <p className="text">{children}</p>
       </div>
       <style jsx>
@@ -21,7 +27,7 @@ export const IconWithText: React.FC<Props> = ({ icon, children }) => {
             align-items: center;
           }
           .text {
-            font-size: 8px;
+            font-size: ${FontSizes[fontSize]};
             margin: 0;
           }
         `}
