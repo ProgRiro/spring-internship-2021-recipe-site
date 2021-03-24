@@ -1,8 +1,8 @@
 import Head from "next/head";
 import { DefaultLayout } from "@/Presentation/components/templates";
-import { Title } from "@/Presentation/components/atoms";
+import { Title, Img } from "@/Presentation/components/atoms";
 import { Header, Footer } from "@/Presentation/components/organisms";
-import { Colors, FontSizes } from "@/Library/StyleTypes";
+import { FontSizes } from "@/Library/StyleTypes";
 import { SITE_NAME_JP, TOP_OG_IMAGE_URL, ORIGIN } from "@/Library/Constants";
 
 interface Props {
@@ -36,11 +36,11 @@ export const RecipePage: React.FC<Props> = ({
           <meta name="twitter:card" content="summary_large_image" />
         </Head>
         <Header />
-        <Title color="black" fontSize="xl">
+        <Title color="black" fontSize="xl" isCenter>
           {title}
         </Title>
         <main>
-          <img className="img" src={imageSrc as string} loading="lazy" />
+          <Img className="RecipeImage" imageSrc={imageSrc} />
           <small className="publishedAt">
             {published.toLocaleDateString()}
           </small>
@@ -61,13 +61,6 @@ export const RecipePage: React.FC<Props> = ({
           display: block;
           font-size: ${FontSizes.md};
           text-align: right;
-        }
-        .img {
-          display: block;
-          width: 99%;
-          margin: 0 auto;
-          border-radius: 20px;
-          border: solid 1px ${Colors.black};
         }
         .article {
           margin: 20px 0;

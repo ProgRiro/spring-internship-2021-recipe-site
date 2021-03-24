@@ -4,7 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { useAmp } from "next/amp";
 import { Recipe } from "@/Domain/Entity";
-import { Title } from "@/Presentation/components/atoms";
+import { Title, Img } from "@/Presentation/components/atoms";
 import { Colors, FontSizes } from "@/Library/StyleTypes";
 
 interface Props {
@@ -30,11 +30,7 @@ export const RecipeCard: React.FC<Props> = ({ recipe }) => {
             <small className="publishedAt">
               {publishedAt.toLocaleDateString()}
             </small>
-            <img
-              className="img"
-              src={recipe.imageUrl as string}
-              loading="lazy"
-            />
+            <Img className="RecipeCardImage" imageSrc={recipe.imageUrl} />
             <p className="description">{recipe.description}</p>
             <p className="ingredient">{formattedIngredientNames}</p>
             <div className="checkRecipeButton">✌️ レシピ詳細 ✌️</div>

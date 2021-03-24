@@ -2,35 +2,21 @@ export const config = { amp: "hybrid" };
 
 import React from "react";
 import { useAmp } from "next/amp";
+import { Img } from "@/Presentation/components/atoms";
 
 interface Props {
-  imgSrc: string;
+  imageSrc: string;
 }
 
-export const ImageIcon: React.FC<Props> = ({ imgSrc }) => {
+export const ImageIcon: React.FC<Props> = ({ imageSrc }) => {
   const isAmp = useAmp();
   return (
     <div>
       {isAmp ? (
-        <amp-img className="img" src={imgSrc} height={35} width={35} />
+        <amp-img className="img" src={imageSrc} height={35} width={35} />
       ) : (
-        <img
-          className="img"
-          src={imgSrc}
-          height={35}
-          width={35}
-          loading="lazy"
-        />
+        <Img className="ImgeIcon" imageSrc={imageSrc} />
       )}
-
-      <style jsx>
-        {`
-          .img {
-            border-radius: 50%;
-            margin: 5px;
-          }
-        `}
-      </style>
     </div>
   );
 };
