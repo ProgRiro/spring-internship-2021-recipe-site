@@ -5,7 +5,7 @@ export const DESCRIPTION =
 export const CONTENT_KEYWORD =
   "レシピ,簡単,料理,COOKHOUSE,クックハウス,くっくはうす,recipe";
 export const TOP_OG_IMAGE_URL =
-  "https://cookpad.com/assets/logos/og_image_1200x630.png";
+  "https://www.tokyo.grand.hyatt.co.jp/restaurants/wp-content/uploads/2020/07/Top_slider_Chinaroom-Dim-Sum-SP-min.jpg";
 export const COPYRIGHT_YEAR = new Date().getFullYear();
 export const ORIGIN =
   "https://progriro-spring-internship-2021-recipe-site.vercel.app";
