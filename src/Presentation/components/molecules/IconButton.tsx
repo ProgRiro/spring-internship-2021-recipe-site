@@ -21,17 +21,26 @@ export const IconButton: React.FCX<Props> = ({
 }) => {
   return (
     <>
-      <button className={className} disabled={isDisabled}>
-        <Icon icon={icon} />
-      </button>
+      {isDisabled ? (
+        <div className="disabled" />
+      ) : (
+        <button className={className}>
+          <Icon icon={icon} />
+        </button>
+      )}
       <style jsx>
         {`
+          .disabled {
+            width: 50px;
+            height: 50px;
+            cursor: default;
+          }
           .pagenationButton {
             width: 50px;
             height: 50px;
             border-radius: 50%;
-            color: ${color}
-            background-color: ${bgColor};
+            color: ${Colors[color]};
+            background-color: ${Colors[bgColor]};
             margin: 5px;
             border: none;
             box-shadow: 0 3px 6px -2px rgb(0 10 60 / 20%);
@@ -41,8 +50,8 @@ export const IconButton: React.FCX<Props> = ({
             height: 100%;
             padding: 8px 12px 8px 8px;
             border-radius: 0 20px 20px 0;
-            color: ${color};
-            background-color: ${bgColor};
+            color: ${Colors[color]};
+            background-color: ${Colors[bgColor]};
             border: none;
             cursor: pointer;
           }
