@@ -1,6 +1,8 @@
+import { DefaultLayout } from "@/Presentation/components/templates";
+
 export const NotFound = () => {
   return (
-    <>
+    <DefaultLayout>
       <main className="container">
         <p>レシピが見つかりませんでした</p>
       </main>
@@ -13,6 +15,6 @@ export const NotFound = () => {
           height: 60vh;
         }
       `}</style>
-    </>
+    </DefaultLayout>
   );
 };

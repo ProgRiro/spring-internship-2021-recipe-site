@@ -9,13 +9,23 @@ export class RestClient implements RestClientInterface {
 
   async post<RequestInterface, ResponseInterface>(
     path: string,
-    data: RequestInterface
+    data?: RequestInterface
   ) {
     return await fetch(path, {
       method: "POST",
-      body: JSON.stringify(data),
+      body: data ? JSON.stringify(data) : null,
       ...config,
     }).then<ResponseInterface>(async (response) => await response.json());
+  }
+
+  async put<RequestInterface>(path: string, data: RequestInterface) {
+    return await fetch(path, {
+      method: "PUT",
+      body: JSON.stringify(data),
+      headers: {
+        "content-type": "image/jpeg",
+      },
+    });
   }
 
   async delete(path: string) {

@@ -6,8 +6,8 @@ import { DefaultPage } from "@/Presentation/components/pages";
 const Create: NextPage = () => {
   return (
     <DefaultPage>
-      <Title color="black" fontSize="lg" isCenter>
-        新規レシピ作成
+      <Title color="black" fontSize="xl" isCenter>
+        ✨ 新規レシピ作成 ✨
       </Title>
       <RecipeForm />
     </DefaultPage>

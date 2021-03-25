@@ -9,6 +9,7 @@ import {
 } from "react-hook-form";
 import { Ingredient } from "@/Domain/ValueObject/Ingredient";
 import { RecipeHandler } from "@/Presentation/handlers";
+import { FileHandler } from "./FileHandler";
 
 type FormValues = {
   title: string;
@@ -25,6 +26,11 @@ type FieldError = {
   message?: Message;
 };
 
+type ImageUrls = {
+  presigned_url: string;
+  object_url: string;
+};
+
 export const FormHandler = () => {
   const {
     register,
@@ -36,23 +42,32 @@ export const FormHandler = () => {
   } = useForm();
   const [steps, setSteps] = useState<string[]>([]);
   const [ingredients, setIngredients] = useState<Ingredient[]>([]);
+  const [imageFile, setImageFile] = useState<File>();
+  const [imageUrls, setImageUrls] = useState<ImageUrls>();
   const { createRecipe, deleteRecipe } = RecipeHandler();
+  const { uploadImage } = FileHandler();
 
   const createData = (data: FormValues) => {
     return {
       title: data.title,
       description: data.description,
-      image_url: null,
+      image_url: imageUrls ? imageUrls.object_url : undefined,
       steps: steps,
       ingredients: ingredients,
     };
   };
 
-  const onSubmit: SubmitHandler<FormValues> = (data) => {
+  const onSubmit: SubmitHandler<FormValues> = async (data) => {
     if (steps.length === 0) return;
     if (ingredients.length === 0) return;
+    if (imageUrls && imageFile) {
+      await uploadImage({
+        uploadUrl: imageUrls.presigned_url,
+        file: imageFile,
+      });
+    }
     const requestData = createData(data);
-    const recipe = createRecipe(requestData);
+    const recipe = await createRecipe(requestData);
     if (recipe) {
       setIngredients([]);
       setSteps([]);
@@ -109,13 +124,17 @@ export const FormHandler = () => {
     const newSteps = steps.filter((step) => step !== delStep);
     setSteps(newSteps);
   };
+  console.log(imageUrls);
 
   return {
     steps,
     ingredients,
+    imageFile,
     errors,
     setSteps,
     setIngredients,
+    setImageFile,
+    setImageUrls,
     register,
     handleSubmit,
     getValues,

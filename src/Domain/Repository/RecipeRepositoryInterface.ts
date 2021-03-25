@@ -18,7 +18,7 @@ export type RecipesResponse = {
 export type RecipeRequest = {
   title: string;
   description: string;
-  image_url: string | null;
+  image_url?: string;
   steps: string[];
   ingredients: Ingredient[];
 };

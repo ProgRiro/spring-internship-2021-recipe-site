@@ -3,7 +3,11 @@ import {
   ForwordInpuField,
   ForwordTextAreaField,
 } from "@/Presentation/components/molecules";
-import { Ingredients, Steps } from "@/Presentation/components/organisms";
+import {
+  Ingredients,
+  Steps,
+  ImageForm,
+} from "@/Presentation/components/organisms";
 import { FormHandler } from "@/Presentation/handlers";
 
 export const RecipeForm = () => {
@@ -12,6 +16,8 @@ export const RecipeForm = () => {
     ingredients,
     setSteps,
     setIngredients,
+    setImageFile,
+    setImageUrls,
     register,
     handleSubmit,
     onSubmit,
@@ -41,6 +47,7 @@ export const RecipeForm = () => {
               ref={register({ required: true })}
             />
           </div>
+          <ImageForm setImageFile={setImageFile} setImageUrls={setImageUrls} />
           <div className="ingredients">
             <Ingredients
               ingredients={ingredients}

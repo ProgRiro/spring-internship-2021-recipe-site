@@ -32,10 +32,12 @@ export type RecipeObj = {
 
 export class RecipeFactory {
   static createFromRecipeObj(reciptObj: RecipeObj) {
-    const author = new Author(reciptObj.author.user_name);
-    const ingredients = reciptObj.ingredients.map(
-      (ingredient) => new Ingredient(ingredient.name, ingredient.quantity)
-    );
+    const author = reciptObj.author && new Author(reciptObj.author.user_name);
+    const ingredients =
+      reciptObj.ingredients &&
+      reciptObj.ingredients.map(
+        (ingredient) => new Ingredient(ingredient.name, ingredient.quantity)
+      );
 
     return new Recipe(
       reciptObj.id,
