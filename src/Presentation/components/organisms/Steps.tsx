@@ -1,47 +1,39 @@
 import { Title } from "@/Presentation/components/atoms";
-import { Colors } from "@/Library/StyleTypes";
+import { StepItem } from "@/Presentation/components/molecules";
 
 interface Props {
   steps: string[];
+  handleStepDelete?: (step: string) => void;
 }
 
-export const Steps: React.FC<Props> = ({ steps }) => {
+export const Steps: React.FC<Props> = ({ steps, handleStepDelete }) => {
   return (
     <>
       <div className="steps">
         <Title color="black" fontSize="lg" isCenter>
-          作り方
+          料理手順
         </Title>
-        {steps.map((step, index) => (
-          <div key={index} className="ingredient">
-            <div className="stepIndex">{index}</div>
-            <div className="stepDescription">
-              <p>{step}</p>
-            </div>
-          </div>
-        ))}
+        {steps.length > 0 ? (
+          steps.map((step, index) => (
+            <StepItem
+              key={index}
+              stepIndex={index + 1}
+              handleDelete={handleStepDelete}
+            >
+              {step}
+            </StepItem>
+          ))
+        ) : (
+          <p>料理手順が登録されていません</p>
+        )}
       </div>
       <style jsx>{`
         .steps {
-          margin: 50px 0;
+          margin: 40px 0 10px 0;
+          width: 100%;s
         }
-        .ingredient {
-          display: flex;
-          align-items: center;
-        }
-        .stepIndex {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          min-width: 40px;
-          min-height: 40px;
-          color: ${Colors.white};
-          background-color: ${Colors.green};
-          border-radius: 10px;
-          font-weight: bold;
-        }
-        .stepDescription {
-          margin-left: 15px;
+        p {
+          text-align: center;
         }
       `}</style>
     </>

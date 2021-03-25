@@ -1,48 +1,40 @@
 import { Ingredient } from "@/Domain/ValueObject";
 import { Title } from "@/Presentation/components/atoms";
-import { Colors } from "@/Library/StyleTypes";
+import { IngredientItem } from "@/Presentation/components/molecules";
 
 interface Props {
   ingredients: Ingredient[];
+  handleDelete?: (name: string, quantity: string) => void;
 }
 
-export const Ingredients: React.FC<Props> = ({ ingredients }) => {
+export const Ingredients: React.FC<Props> = ({ ingredients, handleDelete }) => {
   return (
     <>
       <div className="ingredients">
         <Title color="black" fontSize="lg" isCenter>
           材料
         </Title>
-        {ingredients.map((ingredient, index) => (
-          <div
-            key={index}
-            className="ingredient"
-            style={{
-              backgroundColor: index % 2 === 0 ? Colors.white : Colors.beige,
-            }}
-          >
-            <span className="name">{ingredient.name}</span>
-            <span className="quantity">{ingredient.quantity}</span>
-          </div>
-        ))}
+        {ingredients.length > 0 ? (
+          ingredients.map((ingredient, index) => (
+            <IngredientItem
+              key={index}
+              ingredientIndex={index}
+              name={ingredient.name}
+              quantity={ingredient.quantity}
+              handleDelete={handleDelete}
+            />
+          ))
+        ) : (
+          <p>材料が登録されていません</p>
+        )}
       </div>
       <style jsx>{`
         .ingredients {
-          margin: 30px 0;
+          margin: 40px 0 10px 0;
+          width: 100%;
         }
-        .ingredient {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          padding: 8px 10px;
-          border-radius: 10px;
-        }
-        .name {
-          width: 70%;
-        }
-        .quantity {
-          width: 30%;
-          text-align: right;
+        p {
+          text-align: center;
         }
       `}</style>
     </>

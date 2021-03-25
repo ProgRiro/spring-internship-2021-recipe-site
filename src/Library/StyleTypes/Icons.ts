@@ -11,6 +11,8 @@ import {
   faStar,
   faFile,
   faCopy,
+  faTrash,
+  faPen,
 } from "@fortawesome/free-solid-svg-icons";
 
 export const Icons = {
@@ -26,5 +28,7 @@ export const Icons = {
   star: faStar,
   file: faFile,
   copy: faCopy,
+  trash: faTrash,
+  pen: faPen,
 };
 export type Icons = keyof typeof Icons;

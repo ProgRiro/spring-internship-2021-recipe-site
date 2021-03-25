@@ -33,7 +33,7 @@ export const SearchForm: React.FC = () => {
       <div className="container">
         <input
           className="input"
-          type="text"
+          type="search"
           onChange={handleChange}
           onKeyPress={handleKeyPress}
         />

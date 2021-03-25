@@ -30,7 +30,7 @@ const RecipePage: NextPage<Props> = ({ recipe, recipes, isPosterView }) => {
         ) : (
           <NotFound />
         )
-      ) : (
+      ) : recipes.length > 0 ? (
         <RecipeLayoutPage
           id={recipe.id}
           title={recipe.title}
@@ -43,6 +43,8 @@ const RecipePage: NextPage<Props> = ({ recipe, recipes, isPosterView }) => {
           <Steps steps={recipe.steps} />
           <RelatedRecipesButton relatedRecipes={recipe.relatedRecipes} />
         </RecipeLayoutPage>
+      ) : (
+        <NotFound />
       )}
     </>
   );

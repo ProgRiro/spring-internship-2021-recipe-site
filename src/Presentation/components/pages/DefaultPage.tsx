@@ -1,7 +1,7 @@
 import { DefaultLayout } from "@/Presentation/components/templates";
 import { Header, Footer } from "@/Presentation/components/organisms";
 
-export const TopPage: React.FC = ({ children }) => {
+export const DefaultPage: React.FC = ({ children }) => {
   return (
     <>
       <DefaultLayout>

@@ -1,7 +1,7 @@
 import { StarHandler } from "@/Presentation/handlers";
 import { IconButton, LinkButton } from "@/Presentation/components/molecules";
 
-const StarFolderButton = () => {
+const BottomNav = () => {
   const { getFormattedStarIds } = StarHandler();
 
   const getParams = () => {
@@ -18,9 +18,19 @@ const StarFolderButton = () => {
         <LinkButton to={getParams()}>
           <IconButton
             className="starButton"
-            icon="folder"
+            icon="star"
             color="white"
             bgColor="yellow"
+            size="lg"
+          />
+        </LinkButton>
+        <div className="space" />
+        <LinkButton to="/recipes/create">
+          <IconButton
+            className="starButton"
+            icon="pen"
+            color="white"
+            bgColor="green"
             size="lg"
           />
         </LinkButton>
@@ -35,7 +45,7 @@ const StarFolderButton = () => {
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 150px;
+            height: 120px;
             width: 100%;
             z-index: 99;
             background: linear-gradient(
@@ -44,10 +54,13 @@ const StarFolderButton = () => {
               rgba(242, 239, 228, 1) 80%
             );
           }
+          .space {
+            width: 50px;
+          }
         `}
       </style>
     </>
   );
 };
 
-export default StarFolderButton;
+export default BottomNav;

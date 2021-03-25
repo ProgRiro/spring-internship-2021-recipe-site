@@ -37,6 +37,15 @@ export class MockRecipeRepository implements RecipeRepositoryInterface {
       links: {},
     };
   }
+
+  public async createRecipe() {
+    const recipe = RecipeFactory.createFromRecipeObj(recipesObj[0]);
+    return recipe;
+  }
+
+  public async deleteRecipe() {
+    return 204;
+  }
 }
 
 export const createMockRecipeRepository = () => {

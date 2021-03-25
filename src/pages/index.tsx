@@ -10,11 +10,11 @@ import {
   RecipeCard,
   NotFound,
 } from "@/Presentation/components/organisms";
-import { TopPage } from "@/Presentation/components/pages";
+import { DefaultPage } from "@/Presentation/components/pages";
 
 import dynamic from "next/dynamic";
-const StarFolderButton = dynamic(
-  () => import("@/Presentation/components/organisms/StarFolderButton"),
+const BottomNav = dynamic(
+  () => import("@/Presentation/components/organisms/BottomNav"),
   { ssr: false }
 );
 const PrevObserver = dynamic(
@@ -36,10 +36,9 @@ const Top: NextPage<Props> = ({ recipes, links }) => {
   if (!recipes) return <div>Loading...</div>;
 
   return (
-    <TopPage>
+    <DefaultPage>
       {links.prev && <PrevObserver link={links.prev} />}
       {!isAmp && <SearchForm />}
-      <StarFolderButton />
       {recipes.length > 0 ? (
         <>
           {recipes.map((recipe, index) => (
@@ -50,8 +49,9 @@ const Top: NextPage<Props> = ({ recipes, links }) => {
       ) : (
         <NotFound />
       )}
+      <BottomNav />
       {links.next && <NextObserver link={links.next} />}
-    </TopPage>
+    </DefaultPage>
   );
 };
 

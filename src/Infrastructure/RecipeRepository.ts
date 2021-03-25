@@ -1,5 +1,9 @@
 import { createRestClient } from "./utils";
-import { RecipeRepositoryInterface, Links } from "@/Domain/Repository";
+import {
+  RecipeRepositoryInterface,
+  RecipeRequest,
+  Links,
+} from "@/Domain/Repository";
 import { RecipeFactory, RecipeObj } from "@/Domain/Factory";
 
 type RecipesResponse = {
@@ -79,6 +83,22 @@ export class RecipeRepository implements RecipeRepositoryInterface {
       recipes: recipes,
       links: response.links || [],
     };
+  }
+
+  public async createRecipe(data: RecipeRequest) {
+    const response = await this.restClient.post<RecipeRequest, RecipeResponse>(
+      "https://internship-recipe-api.ckpd.co/recipes",
+      data
+    );
+    const recipe = RecipeFactory.createFromRecipeObj(response);
+    return recipe;
+  }
+
+  public async deleteRecipe(id: string) {
+    const response = await this.restClient.delete(
+      `https://internship-recipe-api.ckpd.co/recipes/${id}`
+    );
+    return response;
   }
 }
 

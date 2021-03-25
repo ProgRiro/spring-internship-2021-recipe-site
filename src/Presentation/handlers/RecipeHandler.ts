@@ -1,4 +1,5 @@
 import { createRecipeRepository } from "@/Infrastructure";
+import { RecipeRequest } from "@/Domain/Repository";
 
 export const RecipeHandler = () => {
   const reciptClient = createRecipeRepository();
@@ -14,5 +15,18 @@ export const RecipeHandler = () => {
   const searchRecipes = async (keyword: string, page?: string) =>
     await reciptClient.searchRecipes(keyword, page);
 
-  return { fetchRecipes, fetchRecipe, fetchRecipeWithRelated, searchRecipes };
+  const createRecipe = async (data: RecipeRequest) =>
+    await reciptClient.createRecipe(data);
+
+  const deleteRecipe = async (id: string) =>
+    await reciptClient.deleteRecipe(id);
+
+  return {
+    fetchRecipes,
+    fetchRecipe,
+    fetchRecipeWithRelated,
+    searchRecipes,
+    createRecipe,
+    deleteRecipe,
+  };
 };
