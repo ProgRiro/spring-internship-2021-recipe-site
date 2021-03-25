@@ -24,7 +24,6 @@ export const RecipeForm = () => {
     onError,
     handleSingleInput,
     handleDoubleInput,
-    handleDelete,
     handleIngredientDelete,
     handleStepDelete,
   } = FormHandler();
@@ -107,15 +106,6 @@ export const RecipeForm = () => {
         </div>
         <Button color="white" bgColor="green" fontSize="md" type="submit">
           登録
-        </Button>
-        <Button
-          color="white"
-          bgColor="green"
-          fontSize="md"
-          type="button"
-          onClick={handleDelete}
-        >
-          削除
         </Button>
       </form>
       <style jsx>
