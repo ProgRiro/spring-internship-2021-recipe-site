@@ -10,6 +10,7 @@ import {
 import { Ingredient } from "@/Domain/ValueObject/Ingredient";
 import { RecipeHandler } from "@/Presentation/handlers";
 import { FileHandler } from "./FileHandler";
+import Router from "next/router";
 
 type FormValues = {
   title: string;
@@ -88,6 +89,7 @@ export const FormHandler = () => {
       setSteps([]);
       reset();
       alert("レシピを投稿しました");
+      Router.push("/");
     }
   };
 
