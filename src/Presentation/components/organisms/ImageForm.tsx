@@ -3,6 +3,7 @@ import imageCompression from "browser-image-compression";
 import { useForm } from "react-hook-form";
 import { Title } from "@/Presentation/components/atoms";
 import { FileHandler } from "@/Presentation/handlers";
+import { Colors } from "@/Library";
 
 type fileInputType = {
   image: File[];
@@ -22,13 +23,14 @@ export const ImageForm: React.FC<Props> = ({ setImageFile, setImageUrls }) => {
   const { register, handleSubmit } = useForm();
   const [image, setImage] = useState<string>();
   const [progress, setProgress] = useState(0);
+  const [loading, setLoading] = useState(false);
   const { requestForUploadImage, uploadImage } = FileHandler();
-
-  console.log(progress);
 
   const onSubmit = async (data: fileInputType) => {
     const { image } = data;
     if (!image[0].name) return;
+
+    setLoading(true);
 
     const formData = new FormData();
     formData.append("image", image[0]);
@@ -58,6 +60,7 @@ export const ImageForm: React.FC<Props> = ({ setImageFile, setImageUrls }) => {
     } catch (error) {
       console.error(error);
     }
+    setLoading(false);
   };
 
   return (
@@ -73,7 +76,13 @@ export const ImageForm: React.FC<Props> = ({ setImageFile, setImageUrls }) => {
           ref={register({ required: false })}
           onChange={handleSubmit(onSubmit)}
         />
-        <img className="image" src={image} alt="" />
+        {loading ? (
+          <div className="loadingBox">
+            <div className="bar" />
+          </div>
+        ) : (
+          <img className="image" src={image} alt="" />
+        )}
       </div>
       <style jsx>
         {`
@@ -88,6 +97,24 @@ export const ImageForm: React.FC<Props> = ({ setImageFile, setImageUrls }) => {
             width: 100%;
             margin-top: 20px;
             border-radius: 20px;
+            border: solid 1px ${Colors.black};
+          }
+          .loadingBox {
+            position: relative;
+            width: 100%;
+            height: 20px;
+            background-color: ${Colors.white};
+            overflow: hidden;
+            border-radius: 10px;
+            margin-top: 70px;
+          }
+          .bar {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: ${progress}%;
+            height: 20px;
+            background-color: ${Colors.green};
           }
         `}
       </style>
