@@ -5,6 +5,10 @@ const StarButton = dynamic(
   () => import("@/Presentation/components/organisms/StarButton"),
   { ssr: false }
 );
+const DeleteButton = dynamic(
+  () => import("@/Presentation/components/organisms/DeleteButton"),
+  { ssr: false }
+);
 
 interface Props {
   id: number;
@@ -44,7 +48,7 @@ export const RecipeMeta: React.FC<Props> = ({
             />
           </LinkButton>
         )}
-
+        <DeleteButton id={id} />
         <div>
           <small className="meta">{published}</small>
           <small className="meta">by {author}</small>

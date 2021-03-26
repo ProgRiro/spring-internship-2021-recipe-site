@@ -34,6 +34,16 @@ const BottomNav = () => {
             size="lg"
           />
         </LinkButton>
+        <div className="space" />
+        <LinkButton to="/recipes/folder">
+          <IconButton
+            className="starButton"
+            icon="folder"
+            color="white"
+            bgColor="red"
+            size="lg"
+          />
+        </LinkButton>
       </div>
       <style jsx>
         {`
@@ -55,7 +65,7 @@ const BottomNav = () => {
             );
           }
           .space {
-            width: 50px;
+            width: 30px;
           }
         `}
       </style>

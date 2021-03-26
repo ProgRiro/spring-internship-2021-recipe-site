@@ -12,6 +12,11 @@ import {
   PosterView,
   RelatedRecipesButton,
 } from "@/Presentation/components/organisms";
+import dynamic from "next/dynamic";
+const BottomNav = dynamic(
+  () => import("@/Presentation/components/organisms/BottomNav"),
+  { ssr: false }
+);
 
 interface Props {
   recipe: Recipe;
@@ -46,6 +51,7 @@ const RecipePage: NextPage<Props> = ({ recipe, recipes, isPosterView }) => {
       ) : (
         <NotFound />
       )}
+      <BottomNav />
     </>
   );
 };

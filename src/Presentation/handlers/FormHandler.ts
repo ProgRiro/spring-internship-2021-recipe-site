@@ -44,7 +44,11 @@ export const FormHandler = () => {
   const [ingredients, setIngredients] = useState<Ingredient[]>([]);
   const [imageFile, setImageFile] = useState<File>();
   const [imageUrls, setImageUrls] = useState<ImageUrls>();
-  const { createRecipe, deleteRecipe } = RecipeHandler();
+  const {
+    createRecipe,
+    getCreatedRecipeIdNum,
+    setCreatedRecipeIds,
+  } = RecipeHandler();
   const { uploadImage } = FileHandler();
 
   const createData = (data: FormValues) => {
@@ -58,8 +62,18 @@ export const FormHandler = () => {
   };
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
-    if (steps.length === 0) return;
-    if (ingredients.length === 0) return;
+    if (ingredients.length === 0) {
+      alert("材料が入力されていません");
+      return;
+    }
+    if (steps.length === 0) {
+      alert("料理手順が入力されていません");
+      return;
+    }
+    if (getCreatedRecipeIdNum() > 10) {
+      alert("投稿できるのは10件までです");
+      return;
+    }
     if (imageUrls && imageFile) {
       await uploadImage({
         uploadUrl: imageUrls.presigned_url,
@@ -69,10 +83,11 @@ export const FormHandler = () => {
     const requestData = createData(data);
     const recipe = await createRecipe(requestData);
     if (recipe) {
+      setCreatedRecipeIds(recipe.id);
       setIngredients([]);
       setSteps([]);
       reset();
-      alert();
+      alert("レシピを投稿しました");
     }
   };
 
@@ -108,10 +123,6 @@ export const FormHandler = () => {
     setValue(inputSecondValue, "");
   };
 
-  const handleDelete = () => {
-    deleteRecipe("7000007");
-  };
-
   const handleIngredientDelete = (name: string, quantity: string) => {
     const newIngredients = ingredients.filter(
       (ingredient) =>
@@ -124,7 +135,6 @@ export const FormHandler = () => {
     const newSteps = steps.filter((step) => step !== delStep);
     setSteps(newSteps);
   };
-  // console.log(imageUrls);
 
   return {
     steps,
@@ -144,7 +154,6 @@ export const FormHandler = () => {
     onError,
     handleSingleInput,
     handleDoubleInput,
-    handleDelete,
     handleIngredientDelete,
     handleStepDelete,
   };

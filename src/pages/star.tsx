@@ -4,6 +4,11 @@ import { Links } from "@/Domain/ValueObject";
 import { RecipeHandler } from "@/Presentation/handlers";
 import { PosterView, NotFound } from "@/Presentation/components/organisms";
 import { StarFolderPage } from "@/Presentation/components/pages";
+import dynamic from "next/dynamic";
+const BottomNav = dynamic(
+  () => import("@/Presentation/components/organisms/BottomNav"),
+  { ssr: false }
+);
 
 interface Props {
   recipes: Recipe[];
@@ -20,6 +25,7 @@ const Star: NextPage<Props> = ({ recipes, links }) => {
       ) : (
         <NotFound />
       )}
+      <BottomNav />
     </StarFolderPage>
   );
 };

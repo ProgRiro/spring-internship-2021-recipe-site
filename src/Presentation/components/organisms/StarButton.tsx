@@ -14,7 +14,7 @@ const StarButton: React.FC<Props> = ({ id }) => {
 
   const handleClick = () => {
     if (starIdNum >= 10) {
-      alert("登録できるのは10件までです");
+      alert("お気に入り登録できるのは10件までです");
       return;
     }
     if (isStar) deleteStarId(id);
