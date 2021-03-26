@@ -19,7 +19,7 @@ export class FileRepository implements FileRepositoryInterface {
   }
 
   public async uploadImage(uploadUrl: string, file: File) {
-    await this.restClient.put<File>(uploadUrl, file);
+    await this.restClient.put(uploadUrl, file);
   }
 }
 

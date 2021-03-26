@@ -18,10 +18,10 @@ export class RestClient implements RestClientInterface {
     }).then<ResponseInterface>(async (response) => await response.json());
   }
 
-  async put<RequestInterface>(path: string, data: RequestInterface) {
+  async put(path: string, data: File) {
     return await fetch(path, {
       method: "PUT",
-      body: JSON.stringify(data),
+      body: data,
       headers: {
         "content-type": "image/jpeg",
       },
@@ -31,7 +31,9 @@ export class RestClient implements RestClientInterface {
   async delete(path: string) {
     return await fetch(path, {
       method: "DELETE",
-      ...config,
+      headers: {
+        "X-Api-Key": process.env.API_KEY as string,
+      },
     }).then((responce) => responce.status);
   }
 }

@@ -56,7 +56,7 @@ export const ImageForm: React.FC<Props> = ({ setImageFile, setImageUrls }) => {
         object_url: preResponse.object_url,
       });
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 

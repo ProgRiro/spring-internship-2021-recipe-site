@@ -109,7 +109,7 @@ export const FormHandler = () => {
   };
 
   const handleDelete = () => {
-    deleteRecipe("7000001");
+    deleteRecipe("7000007");
   };
 
   const handleIngredientDelete = (name: string, quantity: string) => {
@@ -124,7 +124,7 @@ export const FormHandler = () => {
     const newSteps = steps.filter((step) => step !== delStep);
     setSteps(newSteps);
   };
-  console.log(imageUrls);
+  // console.log(imageUrls);
 
   return {
     steps,
